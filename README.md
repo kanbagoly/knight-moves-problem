@@ -15,3 +15,7 @@ A knight move is made in one of the following ways:
 There is no wrapping allowed on a knight move.
 
 Here are some examples of knight moves: ![Examples](images/examples.png)
+
+Given a value for *n*, your program should write the number of valid *n*-key sequences on a single line to standard out.
+
+Hint: For path length of 10 with 2 vowels we expect the solution to contain all of the following digits at least once: 1, 3, 8, 9.
