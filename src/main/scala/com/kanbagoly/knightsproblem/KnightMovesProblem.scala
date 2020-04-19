@@ -15,8 +15,8 @@ class KnightMovesProblem(maxLength: Int) {
       x <- Buttons.indices
       y <- Buttons(x).indices
       if Buttons(x)(y) != Empty
-    } yield compute(x, y)
-    ).sum
+    } yield compute(x, y))
+    .sum
 
   private def compute(row: Int, column: Int, length: Int = 0, vowels: Int = 0): Long =
     if (length >= maxLength) 0
