@@ -4,7 +4,7 @@ import com.kanbagoly.knightsproblem.KeyPad.{Buttons, isKey, keyId}
 
 import scala.collection.mutable
 
-class KnightMovesProblem(maxLength: Int) {
+class KnightMovesProblem private (maxLength: Int) {
 
   import KnightMovesProblem._
 

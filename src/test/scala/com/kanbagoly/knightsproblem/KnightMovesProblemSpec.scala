@@ -13,7 +13,7 @@ class KnightMovesProblemSpec extends AnyWordSpec with Matchers {
       }
     }
     "the path length is 1" should {
-      "be the number of keys" in {
+      "be equal with the number of keys" in {
         val result = KnightMovesProblem.solve(1)
         result should be(18)
       }
