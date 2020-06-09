@@ -1,6 +1,6 @@
 package com.kanbagoly.knightsproblem
 
-import com.kanbagoly.knightsproblem.KeyPad.{Buttons, isKey, keyId}
+import com.kanbagoly.knightsproblem.KeyPad.{buttonIndices, isKey, isVowel, keyId}
 
 import scala.collection.mutable
 
@@ -8,28 +8,23 @@ class KnightMovesProblem private (maxLength: Int) {
 
   import KnightMovesProblem._
 
-  private val memory = mutable.Map[(Int, Int, Int), Long]()
+  def solve(): Long = {
+    val memo = mutable.HashMap.empty[(Int, Int, Int), Long]
+    buttonIndices.map{case (x, y) => compute(x, y, 0, 0, memo)}.sum
+  }
 
-  def solve(): Long = (
-    for {
-      x <- Buttons.indices
-      y <- Buttons(x).indices
-      if Buttons(x)(y) != Empty
-    } yield compute(x, y))
-    .sum
-
-  private def compute(row: Int, column: Int, length: Int = 0, vowels: Int = 0): Long =
+  def compute(row: Int, column: Int, length: Int, vowels: Int, memo: mutable.HashMap[(Int, Int, Int), Long]): Long =
     if (length >= maxLength) 0
     else {
-      val actualVowels = vowels + (if (Buttons(row)(column) == Vowel) 1 else 0)
+      val actualVowels = vowels + (if (isVowel(row, column)) 1 else 0)
       if (actualVowels > MaxVowels) 0
-      else memory.getOrElseUpdate((keyId(row, column), length, actualVowels),
+      else memo.getOrElseUpdate((keyId(row, column), length, actualVowels),
         KnightSteps
           .map { case (x, y) => (row + x, column + y) }
-          .collect { case (x, y) if isKey(x, y) => compute(x, y, length + 1, actualVowels) }
+          .collect { case (x, y) if isKey(x, y) => compute(x, y, length + 1, actualVowels, memo) }
           .sum
           .max(1))
-    }
+  }
 
 }
 
