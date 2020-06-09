@@ -2,12 +2,12 @@ package com.kanbagoly.knightsproblem
 
 import scala.collection.immutable.ArraySeq
 
-sealed trait Key
-case object Vowel extends Key
-case object Consonant extends Key
-case object Empty extends Key
-
 private object KeyPad {
+
+  private sealed trait Key
+  private case object Vowel extends Key
+  private case object Consonant extends Key
+  private case object Empty extends Key
 
   private val Buttons: ArraySeq[ArraySeq[Key]] = ArraySeq(
     ArraySeq(Vowel, Consonant, Consonant, Consonant, Vowel),
