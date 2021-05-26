@@ -1,6 +1,6 @@
 package com.kanbagoly.knightsproblem
 
-import com.kanbagoly.knightsproblem.KeyPad.{keyIndices, isKey, isVowel, keyId}
+import com.kanbagoly.knightsproblem.KeyPad.{keyIndices, isKey, isVowel}
 
 import scala.collection.immutable.ArraySeq
 import scala.collection.mutable
